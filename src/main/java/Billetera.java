@@ -90,7 +90,4 @@ public class Billetera {
         return transacciones;
     }
 
-    public void setTransacciones(List<Transaccion> transacciones) {
-        this.transacciones = transacciones;
-    }
 }
