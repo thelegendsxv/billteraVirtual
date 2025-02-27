@@ -10,12 +10,15 @@ public class Plataforma {
 
     public Plataforma () {
         this.nombre = nombre;
-        this.listaUsuarios = listaUsuarios;
-        this.listaBilleteras = listaBilleteras;
+        this.listaUsuarios = new ArrayList<>();
+        this.listaBilleteras = new ArrayList<>();
     }
 
-    public static ArrayList<Usuario> getUsuarios() {
-        return null;
+    public static List<Usuario> getUsuarios() {
+        if (listaUsuarios == null) {
+            listaUsuarios = new ArrayList<>(); // ✅ Evita que sea null
+        }
+        return listaUsuarios;
     }
 
     public String getNombre() {
@@ -97,17 +100,23 @@ public class Plataforma {
 
 
     public Billetera creacionBilletera() {
-        Billetera billetera = new Billetera (generarNumeroUnico());
+        if (listaBilleteras == null) { // Evita NullPointerException
+            listaBilleteras = new ArrayList<>();
+        }
+        Billetera billetera = new Billetera(generarNumeroUnico());
         listaBilleteras.add(billetera);
         return billetera;
-
     }
 
     public static long generarNumeroUnico() {
         String uuid = UUID.randomUUID().toString().replaceAll("[^0-9]", "");
+        while (uuid.length() < 10) {  // Evita errores de longitud
+            uuid += "0";
+        }
         return Long.parseLong(uuid.substring(0, 10));
-
     }
+
+
 
     public boolean verificarNumero (String numero) throws Exception {
         if (numero == null || numero.isEmpty()) {

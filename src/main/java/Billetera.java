@@ -14,9 +14,10 @@ public class Billetera {
         this.usuario = usuario;
     }
 
-    public Billetera(long l) {
-    }
 
+    public Billetera(long numero) {
+        this.numero = String.valueOf(numero); // Guardar el número correctamente
+    }
     public String getNumero() {
         return numero;
     }

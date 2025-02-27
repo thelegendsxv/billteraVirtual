@@ -20,18 +20,21 @@ class PlataformaTest {
         billeteraDestino = new Billetera("1234567890", 500.0, new ArrayList<>(), usuario);
     }
 
-    // 1️⃣ Prueba para registrar usuario
+    // Prueba para registrar usuario
     @Test
-    public void registrarUsuarioTest() {
-
+    public void registrarUsuarioTest() throws Exception {
         Usuario usuario = new Usuario("Jose", "calle 123", "123", "jose@gmail.com", "12345", true);
-        assertDoesNotThrow(() -> Plataforma.registrarUsuario(usuario));
-        ArrayList<Usuario> usuarios = Plataforma.getUsuarios();
-        assertNotNull(usuarios);
+
+        Plataforma.registrarUsuario(usuario); // No necesitas `assertDoesNotThrow`
+
+        List<Usuario> usuarios = Plataforma.getUsuarios();
+
+        assertNotNull(usuarios); // Ahora sí debería pasar
+        assertTrue(usuarios.contains(usuario)); // Verifica que se haya agregado correctamente
     }
 
 
-    // 2️⃣ Prueba para actualizar datos de usuario
+    // Prueba para actualizar datos de usuario
     @Test
     void actualizacionDatos_DeberiaLanzarExcepcion_CuandoIdEsVacio() {
         Exception exception = assertThrows(Exception.class, () -> {
@@ -40,7 +43,7 @@ class PlataformaTest {
         assertEquals("El ID no puede estar vacío", exception.getMessage());
     }
 
-    // 3️⃣ Prueba para consultar saldo en billetera
+    // Prueba para consultar saldo en billetera
     @Test
     void consultaSaldo_DeberiaLanzarExcepcion_CuandoSaldoEsNegativo() {
         billetera.setSaldo(-50.0);
@@ -50,7 +53,7 @@ class PlataformaTest {
         assertEquals("Saldo inválido", exception.getMessage());
     }
 
-    // 4️⃣ Prueba para consultar transacciones
+    // Prueba para consultar transacciones
     @Test
     void consultarTransacciones_DeberiaLanzarExcepcion_CuandoListaNoInicializada() {
         billetera.setTransacciones(null);
@@ -60,7 +63,7 @@ class PlataformaTest {
         assertEquals("Lista de transacciones no inicializada", exception.getMessage());
     }
 
-    // 5️⃣ Prueba para realizar transacción cuando es nula
+    // Prueba para realizar transacción cuando es nula
     @Test
     void realizarTransaccion_DeberiaLanzarExcepcion_CuandoTransaccionEsNula() {
         Exception exception = assertThrows(Exception.class, () -> {
@@ -69,7 +72,7 @@ class PlataformaTest {
         assertEquals("Transacción no puede ser nula", exception.getMessage());
     }
 
-    // 6️⃣ Prueba para transacción con saldo insuficiente (incluyendo el costo de $200)
+    // Prueba para transacción con saldo insuficiente (incluyendo el costo de $200)
     @Test
     void realizarTransaccion_DeberiaLanzarExcepcion_CuandoSaldoInsuficiente() {
         Transaccion transaccion = new Transaccion("1", 900.0, billetera, billeteraDestino, "gasto", LocalDateTime.now());
@@ -80,7 +83,7 @@ class PlataformaTest {
         assertEquals("Saldo insuficiente para realizar la transacción y cubrir el costo de $200.", exception.getMessage());
     }
 
-    // 7️⃣ Prueba para realizar transacción exitosa
+    // Prueba para realizar transacción exitosa
     @Test
     void realizarTransaccion_DeberiaReducirSaldoOrigenYAumentarDestino() throws Exception {
         Transaccion transaccion = new Transaccion("1", 700.0, billetera, billeteraDestino, "ingreso", LocalDateTime.now());
@@ -91,7 +94,7 @@ class PlataformaTest {
         assertEquals(1200.0, billeteraDestino.getSaldo()); // 500 + 700 = 1200
     }
 
-    // 8️⃣ Prueba para obtener porcentaje de gastos/ingresos sin ingresos
+    // Prueba para obtener porcentaje de gastos/ingresos sin ingresos
     @Test
     void obtenerPorcentajeGastosIngresos_DeberiaLanzarExcepcion_CuandoNoHayIngresos() {
         List<Transaccion> transacciones = new ArrayList<>();
@@ -104,7 +107,7 @@ class PlataformaTest {
         assertEquals("No hay ingresos registrados, no se puede calcular el porcentaje", exception.getMessage());
     }
 
-    // 9️⃣ Prueba para obtener porcentaje de gastos/ingresos con datos válidos
+    // Prueba para obtener porcentaje de gastos/ingresos con datos válidos
     @Test
     void obtenerPorcentajeGastosIngresos_DeberiaCalcularCorrectamente() throws Exception {
         List<Transaccion> transacciones = new ArrayList<>();
@@ -116,7 +119,7 @@ class PlataformaTest {
         assertEquals(20.0, porcentaje, 0.1); // (100 / 500) * 100 = 20%
     }
 
-    // 🔟 Prueba para eliminación de usuario
+    // Prueba para eliminación de usuario
     @Test
     void eliminacionUsuario_DeberiaLanzarExcepcion_CuandoIdEsVacio() {
         Exception exception = assertThrows(Exception.class, () -> {
@@ -125,17 +128,23 @@ class PlataformaTest {
         assertEquals("El ID no puede estar vacío", exception.getMessage());
     }
 
-    // 1️⃣1️⃣ Prueba para crear billetera correctamente
+    // Prueba para crear billetera correctamente
     @Test
     void creacionBilletera_DeberiaAgregarNuevaBilletera() {
         int cantidadAntes = plataforma.getListaBilleteras().size();
-        plataforma.creacionBilletera();
+
+        Billetera nuevaBilletera = plataforma.creacionBilletera();
+
         int cantidadDespues = plataforma.getListaBilleteras().size();
 
-        assertEquals(cantidadAntes + 1, cantidadDespues);
+        assertNotNull(nuevaBilletera, "La billetera creada no debería ser nula");
+        assertEquals(cantidadAntes + 1, cantidadDespues, "La cantidad de billeteras debería aumentar en 1");
+        assertNotNull(nuevaBilletera.getNumero(), "La billetera debe tener un número único");
+        assertFalse(nuevaBilletera.getNumero().isEmpty(), "El número de billetera no debe estar vacío");
     }
 
-    // 1️⃣2️⃣ Prueba para verificar número de billetera
+
+    // Prueba para verificar número de billetera
     @Test
     void verificarNumero_DeberiaLanzarExcepcion_CuandoNumeroEsVacio() {
         Exception exception = assertThrows(Exception.class, () -> {
@@ -144,7 +153,7 @@ class PlataformaTest {
         assertEquals("El número no puede estar vacío", exception.getMessage());
     }
 
-    // 1️⃣3️⃣ Prueba para obtener usuario cuando existe
+    // Prueba para obtener usuario cuando existe
     @Test
     void obtenerUsuario_DeberiaRetornarUsuario_CuandoExiste() throws Exception {
         plataforma.registrarUsuario(usuario);
@@ -154,7 +163,7 @@ class PlataformaTest {
         assertEquals(usuario.getId(), usuarioEncontrado.getId());
     }
 
-    // 1️⃣4️⃣ Prueba para obtener usuario cuando no existe
+    // Prueba para obtener usuario cuando no existe
     @Test
     void obtenerUsuario_DeberiaRetornarNull_CuandoNoExiste() {
         Usuario usuarioNoExistente = plataforma.obtenerUsuario("999");
@@ -162,7 +171,7 @@ class PlataformaTest {
         assertNull(usuarioNoExistente);
     }
 
-    // 1️⃣5️⃣ Prueba para obtener billetera cuando existe
+    // Prueba para obtener billetera cuando existe
     @Test
     void obtenerBilletera_DeberiaRetornarBilletera_CuandoExiste() {
         plataforma.getListaBilleteras().add(billetera);
@@ -172,7 +181,7 @@ class PlataformaTest {
         assertEquals(billetera.getNumero(), billeteraEncontrada.getNumero());
     }
 
-    // 1️⃣6️⃣ Prueba para obtener billetera cuando no existe
+    // Prueba para obtener billetera cuando no existe
     @Test
     void obtenerBilletera_DeberiaRetornarNull_CuandoNoExiste() {
         Billetera billeteraNoExistente = plataforma.obtenerBilletera("0000000000");
@@ -180,7 +189,7 @@ class PlataformaTest {
         assertNull(billeteraNoExistente);
     }
 
-    // 1️⃣7️⃣ Prueba para generar número único (valida que sean diferentes)
+    // Prueba para generar número único (valida que sean diferentes)
     @Test
     void generarNumeroUnico_DeberiaGenerarNumerosDiferentes() {
         long numero1 = Plataforma.generarNumeroUnico();
