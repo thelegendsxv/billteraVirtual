@@ -16,7 +16,7 @@ public class Billetera {
 
 
     public Billetera(long numero) {
-        this.numero = String.valueOf(numero); // Guardar el número correctamente
+        this.numero = String.valueOf(numero);
     }
     public String getNumero() {
         return numero;

@@ -25,12 +25,12 @@ class PlataformaTest {
     public void registrarUsuarioTest() throws Exception {
         Usuario usuario = new Usuario("Jose", "calle 123", "123", "jose@gmail.com", "12345", true);
 
-        Plataforma.registrarUsuario(usuario); // No necesitas `assertDoesNotThrow`
+        Plataforma.registrarUsuario(usuario);
 
         List<Usuario> usuarios = Plataforma.getUsuarios();
 
-        assertNotNull(usuarios); // Ahora sí debería pasar
-        assertTrue(usuarios.contains(usuario)); // Verifica que se haya agregado correctamente
+        assertNotNull(usuarios);
+        assertTrue(usuarios.contains(usuario));
     }
 
 

@@ -16,7 +16,7 @@ public class Plataforma {
 
     public static List<Usuario> getUsuarios() {
         if (listaUsuarios == null) {
-            listaUsuarios = new ArrayList<>(); // ✅ Evita que sea null
+            listaUsuarios = new ArrayList<>();
         }
         return listaUsuarios;
     }
@@ -100,7 +100,7 @@ public class Plataforma {
 
 
     public Billetera creacionBilletera() {
-        if (listaBilleteras == null) { // Evita NullPointerException
+        if (listaBilleteras == null) {
             listaBilleteras = new ArrayList<>();
         }
         Billetera billetera = new Billetera(generarNumeroUnico());
@@ -110,7 +110,7 @@ public class Plataforma {
 
     public static long generarNumeroUnico() {
         String uuid = UUID.randomUUID().toString().replaceAll("[^0-9]", "");
-        while (uuid.length() < 10) {  // Evita errores de longitud
+        while (uuid.length() < 10) {
             uuid += "0";
         }
         return Long.parseLong(uuid.substring(0, 10));
