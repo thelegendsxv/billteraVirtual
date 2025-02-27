@@ -1,3 +1,6 @@
+//Grupo: Jose Manuel Bedoya Mondragón, Laura Sofía Osorio, Luisa María Gómez
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
