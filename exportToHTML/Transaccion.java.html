@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>Transaccion.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Transaccion.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">time</span><span class="s2">.</span><span class="s1">LocalDateTime</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Transaccion </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">String id</span><span class="s2">;</span>
+    <span class="s0">private double </span><span class="s1">monto</span><span class="s2">;</span>
+    <span class="s0">private enum </span><span class="s1">Categoria</span><span class="s2">{}</span>
+    <span class="s0">private </span><span class="s1">Billetera origen</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Billetera destino</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String tipo</span><span class="s2">;  </span><span class="s3">// Se necesita para identificar si es &quot;gasto&quot; o &quot;ingreso&quot;</span>
+    <span class="s0">private </span><span class="s1">LocalDateTime fecha</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Transaccion</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">, </span><span class="s0">double </span><span class="s1">monto</span><span class="s2">, </span><span class="s1">Billetera origen</span><span class="s2">, </span><span class="s1">Billetera destino</span><span class="s2">, </span><span class="s1">String tipo</span><span class="s2">, </span><span class="s1">LocalDateTime fecha</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id </span><span class="s2">= </span><span class="s1">id</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">monto </span><span class="s2">= </span><span class="s1">monto</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">origen </span><span class="s2">= </span><span class="s1">origen</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">destino </span><span class="s2">= </span><span class="s1">destino</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">tipo </span><span class="s2">= </span><span class="s1">tipo</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">fecha </span><span class="s2">= </span><span class="s1">fecha</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getId</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">id</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setId</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">id </span><span class="s2">= </span><span class="s1">id</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getMonto</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">monto</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setMonto</span><span class="s2">(</span><span class="s0">double </span><span class="s1">monto</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">monto </span><span class="s2">= </span><span class="s1">monto</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">Billetera getOrigen</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">origen</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setOrigen</span><span class="s2">(</span><span class="s1">Billetera origen</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">origen </span><span class="s2">= </span><span class="s1">origen</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">Billetera getDestino</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">destino</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setDestino</span><span class="s2">(</span><span class="s1">Billetera destino</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">destino </span><span class="s2">= </span><span class="s1">destino</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getTipo</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">tipo</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setTipo</span><span class="s2">(</span><span class="s1">String tipo</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">tipo </span><span class="s2">= </span><span class="s1">tipo</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">LocalDateTime getFecha</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">fecha</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setFecha</span><span class="s2">(</span><span class="s1">LocalDateTime fecha</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">fecha </span><span class="s2">= </span><span class="s1">fecha</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span>
+
+
+</pre>
+</body>
+</html>

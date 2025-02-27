@@ -1,0 +1,129 @@
+<html>
+<head>
+<title>Billetera.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #6aab73;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Billetera.java</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Billetera </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">String numero</span><span class="s2">;</span>
+    <span class="s0">private double </span><span class="s1">saldo</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Transaccion</span><span class="s2">&gt; </span><span class="s1">transacciones</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">Usuario usuario</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Billetera</span><span class="s2">(</span><span class="s1">String numero</span><span class="s2">, </span><span class="s0">double </span><span class="s1">saldo</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Transaccion</span><span class="s2">&gt; </span><span class="s1">transacciones</span><span class="s2">, </span><span class="s1">Usuario usuario</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">numero </span><span class="s2">= </span><span class="s1">numero</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">saldo </span><span class="s2">= </span><span class="s1">saldo</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">transacciones </span><span class="s2">= </span><span class="s1">transacciones</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">usuario </span><span class="s2">= </span><span class="s1">usuario</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public </span><span class="s1">Billetera</span><span class="s2">(</span><span class="s0">long </span><span class="s1">numero</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">numero </span><span class="s2">= </span><span class="s1">String</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">numero</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s0">public </span><span class="s1">String getNumero</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">numero</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setNumero</span><span class="s2">(</span><span class="s1">String numero</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">numero </span><span class="s2">= </span><span class="s1">numero</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getSaldo</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">saldo</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setSaldo</span><span class="s2">(</span><span class="s0">double </span><span class="s1">saldo</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">saldo </span><span class="s2">= </span><span class="s1">saldo</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">consultaSaldo</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">saldo </span><span class="s2">&lt; </span><span class="s3">0</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;Saldo inválido&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Saldo actual: &quot; </span><span class="s2">+ </span><span class="s1">saldo</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Transaccion</span><span class="s2">&gt; </span><span class="s1">consultarTransacciones</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">transacciones </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;Lista de transacciones no inicializada&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">transacciones</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">realizarTransaccion</span><span class="s2">(</span><span class="s1">Transaccion transaccion</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">transaccion </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;Transacción no puede ser nula&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">Billetera origen </span><span class="s2">= </span><span class="s1">transaccion</span><span class="s2">.</span><span class="s1">getOrigen</span><span class="s2">();</span>
+        <span class="s1">Billetera destino </span><span class="s2">= </span><span class="s1">transaccion</span><span class="s2">.</span><span class="s1">getDestino</span><span class="s2">();</span>
+
+        <span class="s0">double </span><span class="s1">costoTransaccion </span><span class="s2">= </span><span class="s3">200.0</span><span class="s2">;</span>
+
+        <span class="s5">// Verificar que haya saldo suficiente para cubrir el monto y el costo</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">origen</span><span class="s2">.</span><span class="s1">getSaldo</span><span class="s2">() &lt; </span><span class="s1">transaccion</span><span class="s2">.</span><span class="s1">getMonto</span><span class="s2">() + </span><span class="s1">costoTransaccion</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;Saldo insuficiente para realizar la transacción y cubrir el costo de $200.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s5">// Aplicar transacción: restar saldo al origen y sumar al destino</span>
+        <span class="s1">origen</span><span class="s2">.</span><span class="s1">setSaldo</span><span class="s2">(</span><span class="s1">origen</span><span class="s2">.</span><span class="s1">getSaldo</span><span class="s2">() - (</span><span class="s1">transaccion</span><span class="s2">.</span><span class="s1">getMonto</span><span class="s2">() + </span><span class="s1">costoTransaccion</span><span class="s2">));</span>
+        <span class="s1">destino</span><span class="s2">.</span><span class="s1">setSaldo</span><span class="s2">(</span><span class="s1">destino</span><span class="s2">.</span><span class="s1">getSaldo</span><span class="s2">() + </span><span class="s1">transaccion</span><span class="s2">.</span><span class="s1">getMonto</span><span class="s2">());</span>
+
+        <span class="s5">// Agregar la transacción a la lista de transacciones de ambas billeteras</span>
+        <span class="s1">origen</span><span class="s2">.</span><span class="s1">getTransacciones</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">transaccion</span><span class="s2">);</span>
+        <span class="s1">destino</span><span class="s2">.</span><span class="s1">getTransacciones</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">transaccion</span><span class="s2">);</span>
+
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Transacción realizada con éxito. Se aplicó un costo de $200.&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public double </span><span class="s1">obtenerPorcentajeGastosIngresos</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">transacciones </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;Lista de transacciones no inicializada&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">double </span><span class="s1">totalGastos </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+        <span class="s0">double </span><span class="s1">totalIngresos </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">Transaccion t </span><span class="s2">: </span><span class="s1">transacciones</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">t</span><span class="s2">.</span><span class="s1">getTipo</span><span class="s2">().</span><span class="s1">equalsIgnoreCase</span><span class="s2">(</span><span class="s4">&quot;gasto&quot;</span><span class="s2">)) {</span>
+                <span class="s1">totalGastos </span><span class="s2">+= </span><span class="s1">t</span><span class="s2">.</span><span class="s1">getMonto</span><span class="s2">();</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s1">totalIngresos </span><span class="s2">+= </span><span class="s1">t</span><span class="s2">.</span><span class="s1">getMonto</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">totalIngresos </span><span class="s2">== </span><span class="s3">0</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s4">&quot;No hay ingresos registrados, no se puede calcular el porcentaje&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s2">(</span><span class="s1">totalGastos </span><span class="s2">/ </span><span class="s1">totalIngresos</span><span class="s2">) * </span><span class="s3">100</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Transaccion</span><span class="s2">&gt; </span><span class="s1">getTransacciones</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">transacciones</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setTransacciones</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Transaccion</span><span class="s2">&gt; </span><span class="s1">transacciones</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">transacciones </span><span class="s2">= </span><span class="s1">transacciones</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
