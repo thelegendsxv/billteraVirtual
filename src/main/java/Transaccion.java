@@ -3,11 +3,20 @@ import java.time.LocalDateTime;
 public class Transaccion {
     private String id;
     private double monto;
-    private enum categoria {}
+    private enum Categoria{}
     private Billetera origen;
     private Billetera destino;
     private String tipo;  // Se necesita para identificar si es "gasto" o "ingreso"
     private LocalDateTime fecha;
+
+    public Transaccion(String id, double monto, Billetera origen, Billetera destino, String tipo, LocalDateTime fecha) {
+        this.id = id;
+        this.monto = monto;
+        this.origen = origen;
+        this.destino = destino;
+        this.tipo = tipo;
+        this.fecha = fecha;
+    }
 
     public String getId() {
         return id;
@@ -57,14 +66,6 @@ public class Transaccion {
         this.fecha = fecha;
     }
 
-    public Transaccion(String id, double monto, Billetera origen, Billetera destino, String tipo, LocalDateTime fecha) {
-        this.id = id;
-        this.monto = monto;
-        this.origen = origen;
-        this.destino = destino;
-        this.tipo = tipo;
-        this.fecha = fecha;
-    }
 }
 
 

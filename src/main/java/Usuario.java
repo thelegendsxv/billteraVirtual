@@ -6,12 +6,15 @@ public class Usuario {
     private String contraseña;
     private boolean estado;
 
-    public Usuario(String nombre, String direccion, String id, String correo, String contraseña) {
+    public Usuario(String nombre, String direccion, String id, String correo, String contraseña, boolean b) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
+    }
+
+    public Usuario() {
     }
 
     public String getNombre() {

@@ -1,16 +1,21 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Plataforma {
     private String nombre;
-    private List<Usuario> listaUsuarios;
+    private static List<Usuario> listaUsuarios;
     private List<Billetera> listaBilleteras;
 
-    public Plataforma (String nombre, List<Usuario> listaUsuarios, List<Billetera> listaBilleteras) {
+    public Plataforma () {
         this.nombre = nombre;
         this.listaUsuarios = listaUsuarios;
         this.listaBilleteras = listaBilleteras;
+    }
+
+    public static ArrayList<Usuario> getUsuarios() {
+        return null;
     }
 
     public String getNombre() {
@@ -21,7 +26,7 @@ public class Plataforma {
         this.nombre = nombre;
     }
 
-    public void registrarUsuario(Usuario usuario) throws Exception {
+    public static void registrarUsuario(Usuario usuario) throws Exception {
         if (usuario == null) {
             throw new Exception("El usuario no puede ser nulo");
         }
@@ -34,7 +39,7 @@ public class Plataforma {
         System.out.println("Usuario registrado correctamente.");
     }
 
-    public Usuario obtenerUsuario(String id) {
+    public static Usuario obtenerUsuario(String id) {
         return listaUsuarios.stream().filter(usuario -> usuario.getId().equals(id)).findFirst().orElse(null);
     }
 
@@ -46,6 +51,11 @@ public class Plataforma {
         Billetera origen = obtenerBilletera(numeroOrigen);
         Billetera destino = obtenerBilletera(numeroDestino);
 
+        if (origen == null || destino == null) {
+            throw new Exception("Una de las billeteras no existe");
+        }
+
+        // Llamar al método de la billetera, que ya maneja la lógica de la transacción
         origen.realizarTransaccion(new Transaccion(
                 UUID.randomUUID().toString(),
                 monto,
@@ -53,7 +63,6 @@ public class Plataforma {
                 destino,
                 categoria.toString(),
                 LocalDateTime.now()
-
         ));
     }
 
@@ -108,6 +117,22 @@ public class Plataforma {
             if (billetera.toString().equals(numero)) return true;
         }
         return false;
+    }
+
+    public List<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+
+    public List<Billetera> getListaBilleteras() {
+        return listaBilleteras;
+    }
+
+    public void setListaBilleteras(List<Billetera> listaBilleteras) {
+        this.listaBilleteras = listaBilleteras;
     }
 }
 

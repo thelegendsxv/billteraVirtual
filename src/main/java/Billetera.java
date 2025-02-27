@@ -7,11 +7,14 @@ public class Billetera {
     private List<Transaccion> transacciones;
     private Usuario usuario;
 
-    public Billetera(double saldo) {
+    public Billetera(String numero, double saldo, List<Transaccion> transacciones, Usuario usuario) {
         this.numero = numero;
         this.saldo = saldo;
+        this.transacciones = transacciones;
         this.usuario = usuario;
-        this.transacciones = new ArrayList<>();
+    }
+
+    public Billetera(long l) {
     }
 
     public String getNumero() {
@@ -48,21 +51,28 @@ public class Billetera {
         if (transaccion == null) {
             throw new Exception("Transacción no puede ser nula");
         }
-        if (transaccion.getTipo().equalsIgnoreCase("gasto") && transaccion.getMonto() > saldo) {
-            throw new Exception("Saldo insuficiente para realizar la transacción");
-        }
-
 
         Billetera origen = transaccion.getOrigen();
-        Billetera destino = transaccion.getOrigen();
-        //Origen
-        origen.setSaldo(origen.getSaldo() - transaccion.getMonto());
+        Billetera destino = transaccion.getDestino();
+
+        double costoTransaccion = 200.0;
+
+        // Verificar que haya saldo suficiente para cubrir el monto y el costo
+        if (origen.getSaldo() < transaccion.getMonto() + costoTransaccion) {
+            throw new Exception("Saldo insuficiente para realizar la transacción y cubrir el costo de $200.");
+        }
+
+        // Aplicar transacción: restar saldo al origen y sumar al destino
+        origen.setSaldo(origen.getSaldo() - (transaccion.getMonto() + costoTransaccion));
         destino.setSaldo(destino.getSaldo() + transaccion.getMonto());
 
+        // Agregar la transacción a la lista de transacciones de ambas billeteras
         origen.getTransacciones().add(transaccion);
         destino.getTransacciones().add(transaccion);
-        System.out.println("Transacción realizada con éxito.");
+
+        System.out.println("Transacción realizada con éxito. Se aplicó un costo de $200.");
     }
+
 
     public double obtenerPorcentajeGastosIngresos() throws Exception {
         if (transacciones == null) {
@@ -90,4 +100,7 @@ public class Billetera {
         return transacciones;
     }
 
+    public void setTransacciones(List<Transaccion> transacciones) {
+        this.transacciones = transacciones;
+    }
 }
