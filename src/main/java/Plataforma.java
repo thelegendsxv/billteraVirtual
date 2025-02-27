@@ -1,5 +1,5 @@
 //Grupo: Jose Manuel Bedoya Mondragón, Laura Sofía Osorio, Luisa María Gómez.
-
+//Se creo una claseTest, para todos los test de las 2 clases(Plataforma y Billetera, llamado PlataformaTest
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -3,11 +3,12 @@
 <title>Plataforma.java</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <style type="text/css">
-.s0 { color: #cf8e6d;}
+.s0 { color: #7a7e85;}
 .s1 { color: #bcbec4;}
-.s2 { color: #bcbec4;}
-.s3 { color: #6aab73;}
-.s4 { color: #2aacb8;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
 </style>
 </head>
 <body bgcolor="#1e1f22">
@@ -16,80 +17,155 @@
 <font face="Arial, Helvetica" color="#000000">
 Plataforma.java</font>
 </center></td></tr></table>
-<pre><span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<pre><span class="s0">//Grupo: Jose Manuel Bedoya Mondragón, Laura Sofía Osorio, Luisa María Gómez.</span>
 
-<span class="s0">public class </span><span class="s1">Plataforma </span><span class="s2">{</span>
-    <span class="s0">private </span><span class="s1">String nombre</span><span class="s2">;</span>
-    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Usuario</span><span class="s2">&gt; </span><span class="s1">listaUsuarios</span><span class="s2">;</span>
-    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Billetera</span><span class="s2">&gt; </span><span class="s1">listaBilleteras</span><span class="s2">;</span>
 
-    <span class="s0">public </span><span class="s1">Plataforma</span><span class="s2">(</span><span class="s1">String nombre</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Usuario</span><span class="s2">&gt; </span><span class="s1">listaUsuarios</span><span class="s2">, </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">Billetera</span><span class="s2">&gt; </span><span class="s1">listaBilleteras</span><span class="s2">) {</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s2">= </span><span class="s1">nombre</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">listaUsuarios </span><span class="s2">= </span><span class="s1">listaUsuarios</span><span class="s2">;</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">listaBilleteras </span><span class="s2">= </span><span class="s1">listaBilleteras</span><span class="s2">;</span>
-    <span class="s2">}</span>
+<span class="s2">import </span><span class="s1">java</span><span class="s3">.</span><span class="s1">time</span><span class="s3">.</span><span class="s1">LocalDateTime</span><span class="s3">;</span>
+<span class="s2">import </span><span class="s1">java</span><span class="s3">.</span><span class="s1">util</span><span class="s3">.</span><span class="s1">ArrayList</span><span class="s3">;</span>
+<span class="s2">import </span><span class="s1">java</span><span class="s3">.</span><span class="s1">util</span><span class="s3">.</span><span class="s1">List</span><span class="s3">;</span>
+<span class="s2">import </span><span class="s1">java</span><span class="s3">.</span><span class="s1">util</span><span class="s3">.</span><span class="s1">UUID</span><span class="s3">;</span>
 
-    <span class="s0">public </span><span class="s1">String getNombre</span><span class="s2">() {</span>
-        <span class="s0">return </span><span class="s1">nombre</span><span class="s2">;</span>
-    <span class="s2">}</span>
+<span class="s2">public class </span><span class="s1">Plataforma </span><span class="s3">{</span>
+    <span class="s2">private </span><span class="s1">String nombre</span><span class="s3">;</span>
+    <span class="s2">private static </span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Usuario</span><span class="s3">&gt; </span><span class="s1">listaUsuarios</span><span class="s3">;</span>
+    <span class="s2">private </span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Billetera</span><span class="s3">&gt; </span><span class="s1">listaBilleteras</span><span class="s3">;</span>
 
-    <span class="s0">public void </span><span class="s1">setNombre</span><span class="s2">(</span><span class="s1">String nombre</span><span class="s2">) {</span>
-        <span class="s0">this</span><span class="s2">.</span><span class="s1">nombre </span><span class="s2">= </span><span class="s1">nombre</span><span class="s2">;</span>
-    <span class="s2">}</span>
+    <span class="s2">public </span><span class="s1">Plataforma </span><span class="s3">() {</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">nombre </span><span class="s3">= </span><span class="s1">nombre</span><span class="s3">;</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">listaUsuarios </span><span class="s3">= </span><span class="s2">new </span><span class="s1">ArrayList</span><span class="s3">&lt;&gt;();</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">listaBilleteras </span><span class="s3">= </span><span class="s2">new </span><span class="s1">ArrayList</span><span class="s3">&lt;&gt;();</span>
+    <span class="s3">}</span>
 
-    <span class="s0">public void </span><span class="s1">registrarUsuario</span><span class="s2">(</span><span class="s1">Usuario usuario</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">usuario </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
-            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;El usuario no puede ser nulo&quot;</span><span class="s2">);</span>
-        <span class="s2">}</span>
-        <span class="s1">listaUsuarios</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">usuario</span><span class="s2">);</span>
-        <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Usuario registrado correctamente.&quot;</span><span class="s2">);</span>
-    <span class="s2">}</span>
+    <span class="s2">public static </span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Usuario</span><span class="s3">&gt; </span><span class="s1">getUsuarios</span><span class="s3">() {</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">listaUsuarios </span><span class="s3">== </span><span class="s2">null</span><span class="s3">) {</span>
+            <span class="s1">listaUsuarios </span><span class="s3">= </span><span class="s2">new </span><span class="s1">ArrayList</span><span class="s3">&lt;&gt;();</span>
+        <span class="s3">}</span>
+        <span class="s2">return </span><span class="s1">listaUsuarios</span><span class="s3">;</span>
+    <span class="s3">}</span>
 
-    <span class="s0">public void </span><span class="s1">actualizacionDatos</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">, </span><span class="s1">String nuevoCorreo</span><span class="s2">, </span><span class="s1">String nuevaDireccion</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">id </span><span class="s2">== </span><span class="s0">null </span><span class="s2">|| </span><span class="s1">id</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
-            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;El ID no puede estar vacío&quot;</span><span class="s2">);</span>
-        <span class="s2">}</span>
-        <span class="s0">for </span><span class="s2">(</span><span class="s1">Usuario usuario </span><span class="s2">: </span><span class="s1">listaUsuarios</span><span class="s2">) {</span>
-            <span class="s0">if </span><span class="s2">(</span><span class="s1">usuario</span><span class="s2">.</span><span class="s1">getId</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)) {</span>
-                <span class="s1">usuario</span><span class="s2">.</span><span class="s1">setCorreo</span><span class="s2">(</span><span class="s1">nuevoCorreo</span><span class="s2">);</span>
-                <span class="s1">usuario</span><span class="s2">.</span><span class="s1">setDireccion</span><span class="s2">(</span><span class="s1">nuevaDireccion</span><span class="s2">);</span>
-                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Datos actualizados correctamente.&quot;</span><span class="s2">);</span>
-                <span class="s0">return</span><span class="s2">;</span>
-            <span class="s2">}</span>
-        <span class="s2">}</span>
-        <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;Usuario no encontrado&quot;</span><span class="s2">);</span>
-    <span class="s2">}</span>
+    <span class="s2">public </span><span class="s1">String getNombre</span><span class="s3">() {</span>
+        <span class="s2">return </span><span class="s1">nombre</span><span class="s3">;</span>
+    <span class="s3">}</span>
 
-    <span class="s0">public void </span><span class="s1">eliminacionUsuario</span><span class="s2">(</span><span class="s1">String id</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">id </span><span class="s2">== </span><span class="s0">null </span><span class="s2">|| </span><span class="s1">id</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
-            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;El ID no puede estar vacío&quot;</span><span class="s2">);</span>
-        <span class="s2">}</span>
-        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">listaUsuarios</span><span class="s2">.</span><span class="s1">size</span><span class="s2">(); </span><span class="s1">i</span><span class="s2">++) {</span>
-            <span class="s0">if </span><span class="s2">(</span><span class="s1">listaUsuarios</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">).</span><span class="s1">getId</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">id</span><span class="s2">)) {</span>
-                <span class="s1">listaUsuarios</span><span class="s2">.</span><span class="s1">remove</span><span class="s2">(</span><span class="s1">i</span><span class="s2">);</span>
-                <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Usuario eliminado correctamente.&quot;</span><span class="s2">);</span>
-                <span class="s0">return</span><span class="s2">;</span>
-            <span class="s2">}</span>
-        <span class="s2">}</span>
-        <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;Usuario no encontrado&quot;</span><span class="s2">);</span>
-    <span class="s2">}</span>
+    <span class="s2">public void </span><span class="s1">setNombre</span><span class="s3">(</span><span class="s1">String nombre</span><span class="s3">) {</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">nombre </span><span class="s3">= </span><span class="s1">nombre</span><span class="s3">;</span>
+    <span class="s3">}</span>
 
-    <span class="s0">public </span><span class="s1">Billetera creacionBilletera</span><span class="s2">() </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
-        <span class="s1">Billetera billetera </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Billetera</span><span class="s2">();</span>
-        <span class="s1">listaBilleteras</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">billetera</span><span class="s2">);</span>
-        <span class="s0">return </span><span class="s1">billetera</span><span class="s2">;</span>
-    <span class="s2">}</span>
+    <span class="s2">public static void </span><span class="s1">registrarUsuario</span><span class="s3">(</span><span class="s1">Usuario usuario</span><span class="s3">) </span><span class="s2">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">usuario </span><span class="s3">== </span><span class="s2">null</span><span class="s3">) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;El usuario no puede ser nulo&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
 
-    <span class="s0">public boolean </span><span class="s1">verificarNumero</span><span class="s2">(</span><span class="s1">String numero</span><span class="s2">) </span><span class="s0">throws </span><span class="s1">Exception </span><span class="s2">{</span>
-        <span class="s0">if </span><span class="s2">(</span><span class="s1">numero </span><span class="s2">== </span><span class="s0">null </span><span class="s2">|| </span><span class="s1">numero</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
-            <span class="s0">throw new </span><span class="s1">Exception</span><span class="s2">(</span><span class="s3">&quot;El número no puede estar vacío&quot;</span><span class="s2">);</span>
-        <span class="s2">}</span>
-        <span class="s0">for </span><span class="s2">(</span><span class="s1">Billetera billetera </span><span class="s2">: </span><span class="s1">listaBilleteras</span><span class="s2">) {</span>
-            <span class="s0">if </span><span class="s2">(</span><span class="s1">billetera</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">numero</span><span class="s2">)) </span><span class="s0">return true</span><span class="s2">;</span>
-        <span class="s2">}</span>
-        <span class="s0">return false</span><span class="s2">;</span>
-    <span class="s2">}</span>
-<span class="s2">}</span>
+        <span class="s2">if</span><span class="s3">(</span><span class="s1">obtenerUsuario</span><span class="s3">(</span><span class="s1">usuario</span><span class="s3">.</span><span class="s1">getId</span><span class="s3">()) != </span><span class="s2">null</span><span class="s3">) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;El usuario ya existe&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
+
+        <span class="s1">listaUsuarios</span><span class="s3">.</span><span class="s1">add</span><span class="s3">(</span><span class="s1">usuario</span><span class="s3">);</span>
+        <span class="s1">System</span><span class="s3">.</span><span class="s1">out</span><span class="s3">.</span><span class="s1">println</span><span class="s3">(</span><span class="s4">&quot;Usuario registrado correctamente.&quot;</span><span class="s3">);</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public static </span><span class="s1">Usuario obtenerUsuario</span><span class="s3">(</span><span class="s1">String id</span><span class="s3">) {</span>
+        <span class="s2">return </span><span class="s1">listaUsuarios</span><span class="s3">.</span><span class="s1">stream</span><span class="s3">().</span><span class="s1">filter</span><span class="s3">(</span><span class="s1">usuario -&gt; usuario</span><span class="s3">.</span><span class="s1">getId</span><span class="s3">().</span><span class="s1">equals</span><span class="s3">(</span><span class="s1">id</span><span class="s3">)).</span><span class="s1">findFirst</span><span class="s3">().</span><span class="s1">orElse</span><span class="s3">(</span><span class="s2">null</span><span class="s3">);</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public </span><span class="s1">Billetera obtenerBilletera</span><span class="s3">(</span><span class="s1">String numero</span><span class="s3">) {</span>
+        <span class="s2">return </span><span class="s1">listaBilleteras</span><span class="s3">.</span><span class="s1">stream</span><span class="s3">().</span><span class="s1">filter</span><span class="s3">(</span><span class="s1">billetera -&gt; billetera</span><span class="s3">.</span><span class="s1">getNumero</span><span class="s3">().</span><span class="s1">equals</span><span class="s3">(</span><span class="s1">numero</span><span class="s3">)).</span><span class="s1">findFirst</span><span class="s3">().</span><span class="s1">orElse</span><span class="s3">(</span><span class="s2">null</span><span class="s3">);</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">realizarTransaccion</span><span class="s3">(</span><span class="s1">String numeroOrigen</span><span class="s3">, </span><span class="s1">String numeroDestino</span><span class="s3">, </span><span class="s2">double </span><span class="s1">monto</span><span class="s3">, </span><span class="s1">Categoria categoria</span><span class="s3">) </span><span class="s2">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s1">Billetera origen </span><span class="s3">= </span><span class="s1">obtenerBilletera</span><span class="s3">(</span><span class="s1">numeroOrigen</span><span class="s3">);</span>
+        <span class="s1">Billetera destino </span><span class="s3">= </span><span class="s1">obtenerBilletera</span><span class="s3">(</span><span class="s1">numeroDestino</span><span class="s3">);</span>
+
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">origen </span><span class="s3">== </span><span class="s2">null </span><span class="s3">|| </span><span class="s1">destino </span><span class="s3">== </span><span class="s2">null</span><span class="s3">) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;Una de las billeteras no existe&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
+
+        <span class="s0">// Llamar al método de la billetera, que ya maneja la lógica de la transacción</span>
+        <span class="s1">origen</span><span class="s3">.</span><span class="s1">realizarTransaccion</span><span class="s3">(</span><span class="s2">new </span><span class="s1">Transaccion</span><span class="s3">(</span>
+                <span class="s1">UUID</span><span class="s3">.</span><span class="s1">randomUUID</span><span class="s3">().</span><span class="s1">toString</span><span class="s3">(),</span>
+                <span class="s1">monto</span><span class="s3">,</span>
+                <span class="s1">origen</span><span class="s3">,</span>
+                <span class="s1">destino</span><span class="s3">,</span>
+                <span class="s1">categoria</span><span class="s3">.</span><span class="s1">toString</span><span class="s3">(),</span>
+                <span class="s1">LocalDateTime</span><span class="s3">.</span><span class="s1">now</span><span class="s3">()</span>
+        <span class="s3">));</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">actualizacionDatos</span><span class="s3">(</span><span class="s1">String id</span><span class="s3">, </span><span class="s1">String nuevoCorreo</span><span class="s3">, </span><span class="s1">String nuevaDireccion</span><span class="s3">) </span><span class="s2">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">id </span><span class="s3">== </span><span class="s2">null </span><span class="s3">|| </span><span class="s1">id</span><span class="s3">.</span><span class="s1">isEmpty</span><span class="s3">()) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;El ID no puede estar vacío&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s1">Usuario usuario </span><span class="s3">: </span><span class="s1">listaUsuarios</span><span class="s3">) {</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s1">usuario</span><span class="s3">.</span><span class="s1">getId</span><span class="s3">().</span><span class="s1">equals</span><span class="s3">(</span><span class="s1">id</span><span class="s3">)) {</span>
+                <span class="s1">usuario</span><span class="s3">.</span><span class="s1">setCorreo</span><span class="s3">(</span><span class="s1">nuevoCorreo</span><span class="s3">);</span>
+                <span class="s1">usuario</span><span class="s3">.</span><span class="s1">setDireccion</span><span class="s3">(</span><span class="s1">nuevaDireccion</span><span class="s3">);</span>
+                <span class="s1">System</span><span class="s3">.</span><span class="s1">out</span><span class="s3">.</span><span class="s1">println</span><span class="s3">(</span><span class="s4">&quot;Datos actualizados correctamente.&quot;</span><span class="s3">);</span>
+                <span class="s2">return</span><span class="s3">;</span>
+            <span class="s3">}</span>
+        <span class="s3">}</span>
+        <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;Usuario no encontrado&quot;</span><span class="s3">);</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">eliminacionUsuario</span><span class="s3">(</span><span class="s1">String id</span><span class="s3">) </span><span class="s2">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">id </span><span class="s3">== </span><span class="s2">null </span><span class="s3">|| </span><span class="s1">id</span><span class="s3">.</span><span class="s1">isEmpty</span><span class="s3">()) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;El ID no puede estar vacío&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s2">int </span><span class="s1">i </span><span class="s3">= </span><span class="s5">0</span><span class="s3">; </span><span class="s1">i </span><span class="s3">&lt; </span><span class="s1">listaUsuarios</span><span class="s3">.</span><span class="s1">size</span><span class="s3">(); </span><span class="s1">i</span><span class="s3">++) {</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s1">listaUsuarios</span><span class="s3">.</span><span class="s1">get</span><span class="s3">(</span><span class="s1">i</span><span class="s3">).</span><span class="s1">getId</span><span class="s3">().</span><span class="s1">equals</span><span class="s3">(</span><span class="s1">id</span><span class="s3">)) {</span>
+                <span class="s1">listaUsuarios</span><span class="s3">.</span><span class="s1">remove</span><span class="s3">(</span><span class="s1">i</span><span class="s3">);</span>
+                <span class="s1">System</span><span class="s3">.</span><span class="s1">out</span><span class="s3">.</span><span class="s1">println</span><span class="s3">(</span><span class="s4">&quot;Usuario eliminado correctamente.&quot;</span><span class="s3">);</span>
+                <span class="s2">return</span><span class="s3">;</span>
+            <span class="s3">}</span>
+        <span class="s3">}</span>
+        <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;Usuario no encontrado&quot;</span><span class="s3">);</span>
+    <span class="s3">}</span>
+
+
+    <span class="s2">public </span><span class="s1">Billetera creacionBilletera</span><span class="s3">() {</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">listaBilleteras </span><span class="s3">== </span><span class="s2">null</span><span class="s3">) {</span>
+            <span class="s1">listaBilleteras </span><span class="s3">= </span><span class="s2">new </span><span class="s1">ArrayList</span><span class="s3">&lt;&gt;();</span>
+        <span class="s3">}</span>
+        <span class="s1">Billetera billetera </span><span class="s3">= </span><span class="s2">new </span><span class="s1">Billetera</span><span class="s3">(</span><span class="s1">generarNumeroUnico</span><span class="s3">());</span>
+        <span class="s1">listaBilleteras</span><span class="s3">.</span><span class="s1">add</span><span class="s3">(</span><span class="s1">billetera</span><span class="s3">);</span>
+        <span class="s2">return </span><span class="s1">billetera</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public static long </span><span class="s1">generarNumeroUnico</span><span class="s3">() {</span>
+        <span class="s1">String uuid </span><span class="s3">= </span><span class="s1">UUID</span><span class="s3">.</span><span class="s1">randomUUID</span><span class="s3">().</span><span class="s1">toString</span><span class="s3">().</span><span class="s1">replaceAll</span><span class="s3">(</span><span class="s4">&quot;[^0-9]&quot;</span><span class="s3">, </span><span class="s4">&quot;&quot;</span><span class="s3">);</span>
+        <span class="s2">while </span><span class="s3">(</span><span class="s1">uuid</span><span class="s3">.</span><span class="s1">length</span><span class="s3">() &lt; </span><span class="s5">10</span><span class="s3">) {</span>
+            <span class="s1">uuid </span><span class="s3">+= </span><span class="s4">&quot;0&quot;</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s2">return </span><span class="s1">Long</span><span class="s3">.</span><span class="s1">parseLong</span><span class="s3">(</span><span class="s1">uuid</span><span class="s3">.</span><span class="s1">substring</span><span class="s3">(</span><span class="s5">0</span><span class="s3">, </span><span class="s5">10</span><span class="s3">));</span>
+    <span class="s3">}</span>
+
+
+
+    <span class="s2">public boolean </span><span class="s1">verificarNumero </span><span class="s3">(</span><span class="s1">String numero</span><span class="s3">) </span><span class="s2">throws </span><span class="s1">Exception </span><span class="s3">{</span>
+        <span class="s2">if </span><span class="s3">(</span><span class="s1">numero </span><span class="s3">== </span><span class="s2">null </span><span class="s3">|| </span><span class="s1">numero</span><span class="s3">.</span><span class="s1">isEmpty</span><span class="s3">()) {</span>
+            <span class="s2">throw new </span><span class="s1">Exception</span><span class="s3">(</span><span class="s4">&quot;El número no puede estar vacío&quot;</span><span class="s3">);</span>
+        <span class="s3">}</span>
+        <span class="s2">for </span><span class="s3">(</span><span class="s1">Billetera billetera </span><span class="s3">: </span><span class="s1">listaBilleteras</span><span class="s3">) {</span>
+            <span class="s2">if </span><span class="s3">(</span><span class="s1">billetera</span><span class="s3">.</span><span class="s1">toString</span><span class="s3">().</span><span class="s1">equals</span><span class="s3">(</span><span class="s1">numero</span><span class="s3">)) </span><span class="s2">return true</span><span class="s3">;</span>
+        <span class="s3">}</span>
+        <span class="s2">return false</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public </span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Usuario</span><span class="s3">&gt; </span><span class="s1">getListaUsuarios</span><span class="s3">() {</span>
+        <span class="s2">return </span><span class="s1">listaUsuarios</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">setListaUsuarios</span><span class="s3">(</span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Usuario</span><span class="s3">&gt; </span><span class="s1">listaUsuarios</span><span class="s3">) {</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">listaUsuarios </span><span class="s3">= </span><span class="s1">listaUsuarios</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public </span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Billetera</span><span class="s3">&gt; </span><span class="s1">getListaBilleteras</span><span class="s3">() {</span>
+        <span class="s2">return </span><span class="s1">listaBilleteras</span><span class="s3">;</span>
+    <span class="s3">}</span>
+
+    <span class="s2">public void </span><span class="s1">setListaBilleteras</span><span class="s3">(</span><span class="s1">List</span><span class="s3">&lt;</span><span class="s1">Billetera</span><span class="s3">&gt; </span><span class="s1">listaBilleteras</span><span class="s3">) {</span>
+        <span class="s2">this</span><span class="s3">.</span><span class="s1">listaBilleteras </span><span class="s3">= </span><span class="s1">listaBilleteras</span><span class="s3">;</span>
+    <span class="s3">}</span>
+<span class="s3">}</span>
 
 </pre>
 </body>
